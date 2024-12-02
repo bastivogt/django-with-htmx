@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <h1>{% trans "Edit" %}: </h1>
+    <h3>{{ title }}</h3>
+    {% include "./partials/_form.html" with submit_label="Submit" %}
+    <div class="mt-5">
+        <a href="{% url 'todos-index' %}">{% trans "Back to Todos" %}</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'vendor/node_modules/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static '/vendor/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}" refer></script>
+    <script src="/static/js/app.js" refer></script>
+    <title>Todos - {% block title %}{% endblock %}</title>
+</head>
+<body>
+    {% include "./partials/_navbar.html" %}
+
+    <div class="container py-5">
+        {% block content %}{% endblock %}
+    </div>
+    
+
+    {% comment %} <script src="https://unpkg.com/htmx.org@1.1.0"></script> {% endcomment %}
+    <script src="{% static 'vendor/htmx.min.js' %}"></script>
+    <script>
+      document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+      })
+    </script>
+</body>
+</html>

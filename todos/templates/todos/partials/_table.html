@@ -1,0 +1,59 @@
+{% load i18n %}
+<div id="todos-all">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">{% trans "Title" %}</th>
+                <th scope="col">{% trans "Created at" %}</th>
+                <th scope="col">{% trans "Updated at" %}</th>
+                <th scope="col">{% trans "Done" %}</th>
+                <th scope="col">{% trans "Actions" %}</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for todo in todos %}
+                    <tr>
+                        <td>{{ todo.title }}</td>
+                        <td>{{ todo.created_at }}</td>
+                        <td>{{ todo.updated_at }}</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input
+                                    hx-post="{% url 'todos-edit-done' id=todo.id %}"
+                                    hx-target="#todos-all"
+                                    hx-swap="outerHTML"
+                                    {% comment %} hx-select="#todos-all" {% endcomment %}
+
+                                
+                                    class="form-check-input" type="checkbox" role="switch" name="done" {% if todo.done %}checked{% endif %}>
+                            </div>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="{% url 'todos-edit' id=todo.id %}">{% trans "Edit" %}</a>                        <a class="btn btn-danger btn-sm" href="#">{% trans "Delete" %}</a>
+    
+                        </td>
+                    </tr>
+                {% endfor %}
+              {% comment %} <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+              </tr> {% endcomment %}
+            </tbody>
+          </table>
+    </div>
+    
+</div>
