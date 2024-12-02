@@ -47,6 +47,7 @@ def edit(request, id):
         form = TodoForm(instance=todo)
     return render(request, "todos/edit.html", {
         "title": todo.title,
+        "todo": todo,
         "form": form
     })
 

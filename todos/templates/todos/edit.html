@@ -11,6 +11,14 @@
     <h3>{{ title }}</h3>
     {% include "./partials/_form.html" with submit_label="Submit" %}
     <div class="mt-5">
-        <a href="{% url 'todos-index' %}">{% trans "Back to Todos" %}</a>
+        <a class="btn btn-primary" href="{% url 'todos-index' %}">{% trans "Overview" %}</a>
+        <a 
+        hx-post="{% url 'todos-delete-detail' id=todo.id %}"
+        hx-swap="none"
+        hx-on::after-request="location.href='{% url "todos-index" %}'"
+        hx-confirm="{% trans 'Do you really want to delete' %}: {{ todo.title|upper }}?"
+
+        class="btn btn-danger" href="{% url 'todos-index' %}">{% trans "Delete" %}</a>
+
     </div>
 {% endblock %}
