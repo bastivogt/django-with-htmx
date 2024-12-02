@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ title }}: {{ todo.title }}</h1>
+    <p>
+        {% trans "Do you really want to delete Todo:" %} "{{ todo.title }}"?
+    </p>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <button class="btn btn-danger">{% trans "Delete" %}</button>
+    </form>
+    <div class="mt-5">
+        <a href="{% url 'todos-index' %}">{% trans "Back to Todos" %}</a>
+    </div>
+{% endblock %}

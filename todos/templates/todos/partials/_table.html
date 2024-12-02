@@ -30,7 +30,13 @@
                             </div>
                         </td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="{% url 'todos-edit' id=todo.id %}">{% trans "Edit" %}</a>                        <a class="btn btn-danger btn-sm" href="#">{% trans "Delete" %}</a>
+                            <a class="btn btn-primary btn-sm" href="{% url 'todos-edit' id=todo.id %}">{% trans "Edit" %}</a>
+                            {% comment %} <a
+                                hx-post="{% url 'todos-delete-index' id=todo.id %}"
+                                hx-target="#todos-all"
+                                hx-swap="outerHTML"
+                                class="btn btn-danger btn-sm" href="#">{% trans "Delete" %}</a> {% endcomment %}
+                            <a class="btn btn-danger btn-sm" href="{% url 'todos-delete' id=todo.id %}">{% trans "Delete" %}</a>
     
                         </td>
                     </tr>
