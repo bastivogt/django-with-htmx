@@ -15,7 +15,8 @@
         <a 
         hx-post="{% url 'todos-delete-detail' id=todo.id %}"
         hx-swap="none"
-        hx-on::after-request="location.href='{% url "todos-index" %}'"
+        {% comment %} hx-on::after-request="location.href='{% url "todos-index" %}'" {% endcomment %}
+        hx-on::after-swap="location.href='{% url "todos-index" %}'"
         hx-confirm="{% trans 'Do you really want to delete' %}: {{ todo.title|upper }}?"
 
         class="btn btn-danger" href="{% url 'todos-index' %}">{% trans "Delete" %}</a>
