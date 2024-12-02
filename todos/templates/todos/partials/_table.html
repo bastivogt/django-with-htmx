@@ -8,13 +8,13 @@
                 <th scope="col">{% trans "Created at" %}</th>
                 <th scope="col">{% trans "Updated at" %}</th>
                 <th scope="col">{% trans "Done" %}</th>
-                <th scope="col">{% trans "Actions" %}</th>
+                <th scope="col"><div class="d-flex justify-content-end">{% trans "Actions" %}</div></th>
               </tr>
             </thead>
             <tbody>
                 {% for todo in todos %}
-                    <tr>
-                        <td>{{ todo.title }}</td>
+                    <tr style="vertical-align: middle;">
+                        <td><strong>{{ todo.title }}</strong></td>
                         <td>{{ todo.created_at }}</td>
                         <td>{{ todo.updated_at }}</td>
                         <td>
@@ -30,6 +30,7 @@
                             </div>
                         </td>
                         <td>
+                          <div class="d-flex flex-nowrap gap-1 w-full justify-content-end">
                             <a class="btn btn-secondary btn-sm" href="{% url 'todos-detail' id=todo.id %}">{% trans "Show" %}</a>
                             <a class="btn btn-primary btn-sm" href="{% url 'todos-edit' id=todo.id %}">{% trans "Edit" %}</a>
                             <a
@@ -39,9 +40,9 @@
                                 hx-confirm="{% trans 'Do you really want to delete' %}: {{ todo.title|upper }}?"
                                 class="btn btn-danger btn-sm" href="#">{% trans "Delete" %}</a>
                             {% comment %} <a class="btn btn-danger btn-sm" href="{% url 'todos-delete' id=todo.id %}">{% trans "Delete" %}</a> {% endcomment %}
-    
+                          </div>
                         </td>
-                    </tr>
+                    </tr>  
                 {% endfor %}
               {% comment %} <tr>
                 <th scope="row">1</th>
