@@ -18,7 +18,7 @@
                         <td>{{ todo.created_at }}</td>
                         <td>{{ todo.updated_at }}</td>
                         <td>
-                            <div class="form-check form-switch">
+                            <div class="form-check">
                                 <input
                                     hx-post="{% url 'todos-edit-done' id=todo.id %}"
                                     hx-target="#todos-all"
@@ -26,16 +26,17 @@
                                     {% comment %} hx-select="#todos-all" {% endcomment %}
 
                                 
-                                    class="form-check-input" type="checkbox" role="switch" name="done" {% if todo.done %}checked{% endif %}>
+                                    class="form-check-input" type="checkbox" name="done" {% if todo.done %}checked{% endif %}>
                             </div>
                         </td>
                         <td>
+                            <a class="btn btn-secondary btn-sm" href="{% url 'todos-detail' id=todo.id %}">{% trans "Show" %}</a>
                             <a class="btn btn-primary btn-sm" href="{% url 'todos-edit' id=todo.id %}">{% trans "Edit" %}</a>
                             <a
                                 hx-post="{% url 'todos-delete-index' id=todo.id %}"
                                 hx-target="#todos-all"
                                 hx-swap="outerHTML"
-                                hx-confirm="{% trans 'Do you really want to delete' %}: {{ todo.title|upper }}"
+                                hx-confirm="{% trans 'Do you really want to delete' %}: {{ todo.title|upper }}?"
                                 class="btn btn-danger btn-sm" href="#">{% trans "Delete" %}</a>
                             {% comment %} <a class="btn btn-danger btn-sm" href="{% url 'todos-delete' id=todo.id %}">{% trans "Delete" %}</a> {% endcomment %}
     

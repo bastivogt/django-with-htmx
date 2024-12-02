@@ -80,6 +80,15 @@ def delete_index(request, id):
     
 
 @login_required(login_url="sevo-auth-sign-in")
+def delete_detail(request, id):
+        if request.method == "POST":
+            todo = get_object_or_404(Todo, id=id, user=request.user)
+            todo.delete()
+            return redirect("todos-index")
+
+    
+
+@login_required(login_url="sevo-auth-sign-in")
 def delete(request, id):
     todo = get_object_or_404(Todo, id=id, user=request.user)
 
@@ -93,3 +102,21 @@ def delete(request, id):
         "title": _("Delete"),
         "todo": todo
     })
+
+
+
+@login_required(login_url="sevo-auth-sign-in")
+def detail(request, id):
+    todo = get_object_or_404(Todo, id=id, user=request.user)
+    if request.method == "POST":
+        todo = get_object_or_404(Todo, id=id, user=request.user)
+        todo.done = not todo.done
+        todo.save()
+        return render(request, "todos/partials/_detail-card.html", {
+            "todo": todo
+        })
+    return render(request, "todos/detail.html", {
+        "title": "Todo Detail",
+        "todo": todo
+    })
+

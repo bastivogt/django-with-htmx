@@ -134,6 +134,15 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+# messages
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.ERROR: "danger"
+
+}
+
+
 
 #SEVO_AUTH
 SEVO_AUTH_CAN_SIGN_UP = True
