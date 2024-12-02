@@ -31,12 +31,13 @@
                         </td>
                         <td>
                             <a class="btn btn-primary btn-sm" href="{% url 'todos-edit' id=todo.id %}">{% trans "Edit" %}</a>
-                            {% comment %} <a
+                            <a
                                 hx-post="{% url 'todos-delete-index' id=todo.id %}"
                                 hx-target="#todos-all"
                                 hx-swap="outerHTML"
-                                class="btn btn-danger btn-sm" href="#">{% trans "Delete" %}</a> {% endcomment %}
-                            <a class="btn btn-danger btn-sm" href="{% url 'todos-delete' id=todo.id %}">{% trans "Delete" %}</a>
+                                hx-confirm="{% trans 'Do you really want to delete' %}: {{ todo.title|upper }}"
+                                class="btn btn-danger btn-sm" href="#">{% trans "Delete" %}</a>
+                            {% comment %} <a class="btn btn-danger btn-sm" href="{% url 'todos-delete' id=todo.id %}">{% trans "Delete" %}</a> {% endcomment %}
     
                         </td>
                     </tr>
